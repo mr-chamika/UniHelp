@@ -1,0 +1,41 @@
+.c-signup{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.c-signup fieldset{
+
+    
+   display: flex;
+   flex-direction: column;
+   vertical-align: middle;
+   margin-top: 30%;
+    
+
+}
+
+.c-signup legend{
+
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+
+}
+
+.c-signup form{
+
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+}
+
+.c-signup button{
+
+    margin-top: 10px;
+
+}
