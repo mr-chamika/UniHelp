@@ -1,10 +1,36 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = () => {
 
-    const handleSubmit=()=>{
+    const navigate = useNavigate();
 
-        alert('submit success');
+    const [name,setName] = useState('');
+    const [username,setUsername] = useState('');
+    const [uni,setUni] = useState('');
+    const [facualty,setFacualty] = useState('');
+    const [email,setEmail] = useState('');
+    const [phone,setPhone] = useState('');
+
+    const handleSubmit=(e)=>{
+
+        e.preventDefault();
+
+        if(name != '' || uni != '' || facualty != '' || email != '' || phone != '' || username != '' ){
+
+            fetch('http://localhost:5000/user/create',{
+
+                method:'POST',
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify({name,uni,facualty,email,phone,username})
+
+            })
+            .then((res)=>res.json())
+            .then((data)=>{console.log(data.newUser);alert('Data submitted successfully.');navigate('/home')})
+            .catch((err)=>{console.log('Error from SignUp ',err)});
+
+        }
 
     }
 
@@ -12,16 +38,17 @@ const SignUp = () => {
 
         <div className="c-signup">
 
-            <fieldset>
-                <legend>Application</legend>
                 <form onSubmit={handleSubmit}>
 
-                    <label>Name</label>
+                    <label>Full Name</label>
 
-                    <input placeholder="W.K. HASITH CHAMIKA WIJESINGHE" type="text"></input>
+                    <input placeholder="W.K. HASITH CHAMIKA WIJESINGHE" type="text" onChange={(e)=>setName(e.target.value)}></input>
+
+                    <label>Username</label>
+                    <input placeholder="chamika123" type="text" onChange={(e)=>setUsername(e.target.value)}></input>
 
                     <label>University</label>
-                    <select>
+                    <select  onChange={(e)=>setUni(e.target.value)}>
                         <option value="" selected hidden>Select Your University</option>
                         <option value="University of Colombo">University of Colombo</option>
                         <option value="University of Jayawandanapura">University of Jayawandanapura</option>
@@ -32,7 +59,7 @@ const SignUp = () => {
                     </select>
 
                     <label>Facualty</label>
-                    <select>
+                    <select  onChange={(e)=>setFacualty(e.target.value)}>
                         <option value="" selected hidden>Select Your Facualty</option>
                         <option value="UCSC">UCSC</option>
                         <option value="Facualty of Science">Facualty of Science</option>
@@ -43,16 +70,14 @@ const SignUp = () => {
                     </select>
 
                     <label>Student Email</label>
-                    <input placeholder="2022cs226@stu.ucsc.cmb.ac.lk" type="email"></input>
+                    <input placeholder="2022cs226@stu.ucsc.cmb.ac.lk" type="email" onChange={(e)=>setEmail(e.target.value)}></input>
 
                     <label>Mobile Number</label>
-                    <input placeholder="078-6715765" type="tel"></input>
+                    <input placeholder="078-6715765" type="tel"  onChange={(e)=>setPhone(e.target.value)}></input>
 
                     <button type="submit">Sign Up</button>
 
                 </form>
-
-            </fieldset>
 
         </div>
 

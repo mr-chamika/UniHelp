@@ -2,40 +2,35 @@
 
     display: flex;
     justify-content: center;
-    align-items: center;
-
-}
-
-.c-signup fieldset{
-
-    
-   display: flex;
-   flex-direction: column;
-   vertical-align: middle;
-   margin-top: 30%;
-    
-
-}
-
-.c-signup legend{
-
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 5px;
-    text-align: center;
 
 }
 
 .c-signup form{
 
     display: flex;
-    flex-direction: column;
-    padding: 30px;
-
+    flex-direction: column;    
+    align-items: left;
+    margin: 150px 0;
+    
 }
 
-.c-signup button{
+.c-signup form input,select{
 
-    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 6px 3px;
+    
+}
 
+.c-signup form input{
+
+    width: 300px;
+    border-radius: 5px;
+    outline: none;
+    
+}
+
+.c-signup form select{
+
+    border-radius: 10px;
+    
 }
