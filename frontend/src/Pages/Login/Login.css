@@ -21,8 +21,23 @@
 
 }
 
-.c-login input{
+.c-login span {
 
-    margin-bottom: 10px;
+    color: red;
+    font-size: 15px;
+
+}
+
+.c-login button{
+
+    width: 100px;
+
+}
+
+.c-login .field{
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 
 }
