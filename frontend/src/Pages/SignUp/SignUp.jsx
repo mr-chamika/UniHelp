@@ -101,7 +101,6 @@ const SignUp = () => {
             setIsAllFilled(false);
             setEmailExists(false);
             setUsernameExists(false);
-            if (password === cpassword) { setIsPasswordMatch(true) } else { setIsPasswordMatch(false) }
 
         }
 
