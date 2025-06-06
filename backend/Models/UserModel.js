@@ -8,9 +8,11 @@ const schema = mongoose.Schema({
     Facualty: String,
     Email: String,
     Phone: String,
-    Password: String
+    Password: String,
+    Role: { type: String, default: "user" },
+    Events: { type: Number, default: 0 }
 
-});
+}, { timestamps: true });
 
 const userModel = mongoose.model('User', schema);
 

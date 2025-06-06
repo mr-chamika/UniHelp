@@ -1,0 +1,140 @@
+.c-sidebar {
+
+    width: 12%;
+    height: 82%;
+    padding-top: 10px;
+    position: fixed;
+    z-index: 10;
+    border-radius: 20px;
+    background-color: rgba(217, 217, 217, 0.01);
+    box-shadow: 0px 5px 12.9px rgba(0, 0, 0, 0.211);
+    margin-left: 0.5%;
+    margin-top: 7%;
+
+
+}
+
+.c-sidebar .sidebar-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    align-items: center;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.c-sidebar .sidebar-wrapper .button {
+
+    background: rgba(25, 0, 255, 0.662);
+    width: 85%;
+    text-align: center;
+    justify-content: center;
+    padding: 15px 0px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+    /* transition: background 0.5s ease-in; */
+
+}
+
+.c-sidebar .sidebar-wrapper .button .dash {
+
+    text-decoration: none;
+    color: white;
+    background: unset;
+
+}
+
+.c-sidebar .sidebar-wrapper .active {
+
+    background: radial-gradient(50% 50%, #7D84FF 0%, #000EFF 98%);
+    width: 85%;
+    text-align: center;
+    justify-content: center;
+    padding: 15px 0px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.c-sidebar .sidebar-wrapper .button .sche {
+
+    text-decoration: none;
+    color: white;
+    background: unset;
+
+}
+
+.c-sidebar .sidebar-wrapper .logout {
+
+    margin-top: 89%;
+
+}
+
+.c-sidebar .sidebar-wrapper .button:hover {
+
+    cursor: pointer;
+    background: radial-gradient(50% 50%, #7D84FF 0%, #000EFF 98%);
+
+}
+
+.in-sidebar {
+
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: space-evenly;
+    gap: 25%;
+    align-items: center;
+
+}
+
+.in-sidebar .c {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 130px;
+
+}
+
+.in-sidebar .b {
+
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+
+}
+
+.in-sidebar .b button {
+
+    border: none;
+    width: 150px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+
+}
+
+.in-sidebar .b input {
+
+    border: none;
+    width: 150px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    background-color: rgb(3, 198, 26);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+
+}

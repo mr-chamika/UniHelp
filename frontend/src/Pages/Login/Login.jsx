@@ -1,13 +1,42 @@
-import { useDebugValue, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from "react";
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './Login.css';
 import Eye from '../../assets/Login password hidden/eye.png';
 import Hidden from '../../assets/Login password hidden/hidden.png';
+import throwing from '../../assets/Login password hidden/throwing.jpg'
+import { UserContext } from '../../Contexts/userContext';
+
+//PW = Chamika@1234, perara
 
 const Login = () => {
 
     const navigate = useNavigate();
+
+    const { setUser } = useContext(UserContext);
+
+    //hashing
+
+    const salted = (password) => {
+
+        return "chamika" + password;
+
+    }
+
+    const hashed = (saltedPassword) => {
+
+        var hashedOne = "";
+
+        for (let i = 0; i < saltedPassword.length; i++) {
+
+            hashedOne = hashedOne + saltedPassword.charCodeAt(i).toString();
+
+        }
+
+        return hashedOne;
+
+
+    }
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +46,7 @@ const Login = () => {
     const [isPassword, setIsPassword] = useState(true);
     const [invalid, setInvalid] = useState(false);
     const [wrongPW, setWrongPW] = useState(false);
+    const [userINV, setUserINV] = useState(false);
 
     const handleP = () => {
 
@@ -24,7 +54,7 @@ const Login = () => {
 
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
 
         e.preventDefault();
 
@@ -39,12 +69,15 @@ const Login = () => {
             setIsUempty(false);
             setIsPempty(true);
             setInvalid(false);
+            setWrongPW(false);
 
         } else if (username == '' && password != '') {
 
             setIsPempty(false);
             setIsUempty(true);
             setInvalid(false);
+            setUserINV(false)
+            setWrongPW(false);
 
         } else {
 
@@ -55,24 +88,45 @@ const Login = () => {
 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username })
+                body: JSON.stringify({ username: username.trim(), password: hashed(salted(password.trim())) })
 
             })
                 .then((res) => res.json())
                 .then((data) => {
 
-                    if (data.response.length == 1) {
+                    if (data) {
 
-                        setInvalid(false);
+                        if (data.message == 'Invalid Username') {
 
-                        if (password == data.response[0].Password) {
-
-                            console.log(data);
-                            navigate('/home');
+                            setWrongPW(false);
+                            setUserINV(true);
 
                         }
 
-                        setWrongPW(true);
+                        if (data.message == 'Wrong Password') {
+
+                            setWrongPW(true);
+                            setUserINV(false);
+
+                        }
+
+
+
+                        if (data.token) {
+
+                            setInvalid(false);
+
+                            localStorage.setItem('userId', data.userId);
+                            localStorage.setItem('username', data.username);
+                            localStorage.setItem('role', data.role);
+                            localStorage.setItem('token', data.token);
+
+                            setUser({ userId: data.userId, username: data.username, role: data.role });
+
+                            navigate(`/home/dashboard`);
+
+                        }
+
 
 
                     } else {
@@ -93,7 +147,7 @@ const Login = () => {
     return (
 
         <div className="c-login">
-            <div className="wrapper">
+            <div className="left">
                 <form onSubmit={handleLogin}>
 
                     <div className="field">
@@ -101,6 +155,7 @@ const Login = () => {
                         <label>Username</label>
                         <input className='u-in' type="text" onChange={(e) => setUsername(e.target.value)} size={40}></input>
                         {isUempty && <span>* Username field must be filled *</span>}
+                        {userINV && <span>* Invalid username *</span>}
 
                     </div>
 
@@ -120,6 +175,16 @@ const Login = () => {
                     <button className='submit' type='submit'>Login</button>
 
                 </form>
+
+                <p><NavLink to='/forgotpassword'>Forgot Password</NavLink>?</p>
+
+            </div>
+
+            <div className="right">
+
+                <button><NavLink className='toSign' to='/signup'>sign up</NavLink></button>
+
+                <img className="login-pic" src={throwing}></img>
 
             </div>
         </div>

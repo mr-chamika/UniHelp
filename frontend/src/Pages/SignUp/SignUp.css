@@ -2,6 +2,41 @@
 
     display: flex;
     justify-content: center;
+    height: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+
+}
+
+.c-signup .left {
+
+    width: 50%;
+
+}
+
+.c-signup .left .signup-pic {
+
+    width: 50%;
+    position: fixed;
+    height: 100%;
+
+}
+
+.c-signup .right {
+
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.c-signup .signup-wrapper {
+
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50%;
 
 }
 
@@ -10,40 +45,37 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 150px 0;
+    margin: 20px 0 20px 0;
+    width: 100%;
 
 }
 
-.c-signup label {
+.c-signup form select {
 
+    padding: 6px 0px;
+    font-size: 17px;
+    border-radius: 10px;
     margin-top: 30px;
-    font-size: 20px;
-    font-family: "Poppins", serif;
-
-}
-
-.c-signup form input,
-select {
-
-    padding: 6px 3px;
-    font-size: 12px;
 
 }
 
 .c-signup form input {
 
-    width: 300px;
-    border-radius: 5px;
+    width: 95.5%;
+    border-radius: 10px;
     outline: none;
     border: none;
-    background-color: rgb(240, 239, 239);
-    padding: 9px 5px;
+    background-color: hsla(0, 0%, 78%, 0.249);
+    padding: 9px 10px;
+    font-size: 17px;
+    margin-top: 30px;
 
 }
 
 .c-signup form select {
 
     border-radius: 10px;
+    background-color: hsla(0, 0%, 78%, 0.139);
 
 }
 
@@ -53,16 +85,21 @@ select {
 
 }
 
-.c-signup button {
+.c-signup .signup-button {
 
     border: none;
-    margin: 30px 0px 0px 30px;
-    width: 250px;
+    width: 100%;
+    height: 40px;
     border-radius: 10px;
-    padding: 5px 10px;
     font-weight: bold;
-    background-color: black;
+    font-size: 15px;
+    background-color: rgb(54, 94, 255);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
 
 }
 
@@ -72,40 +109,77 @@ select {
 
 }
 
-.c-signup .pass {
-
-    display: flex;
-
-}
-
-
-.c-signup img {
+.c-signup .right img {
 
     width: 20px;
     height: 20px;
     margin-top: 2px;
+    background-color: unset;
 
 }
 
 .c-signup .eye {
 
     width: 50px;
-    margin: 0px 0px 0px 0px;
     background-color: unset;
+}
 
+.c-signup .pass button {
 
+    background-color: unset;
+    border: none;
+    outline: none;
 }
 
 .c-signup .pass {
 
-    background-color: rgb(240, 239, 239);
+    display: flex;
+    margin-top: 30px;
     border-radius: 10px;
-    width: 310px;
+    width: 100%;
+    background-color: hsla(0, 0%, 78%, 0.249);
+
 }
 
 .c-signup .pass input {
 
-    border: 0;
-    margin: 4px 0px 0px 2px;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: unset;
 
+}
+
+.error {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.c-signup form input.error-field {
+    border: 1px solid #ff0000;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.8s ease-in-out;
+}
+
+.popup-container.show {
+    visibility: visible;
+    opacity: 1;
 }

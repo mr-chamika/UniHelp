@@ -1,14 +1,26 @@
 .c-login {
 
-    padding: 20px;
+    padding: 0px 20px;
+    font-family: "montserrat", serif;
+    display: flex;
 
 }
 
-.c-login .wrapper {
+.c-login .left {
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50%;
+    margin-left: 2%;
+    margin-right: 4%;
+    margin-top: 10%;
+
+}
+
+.c-login .left p {
+
+    margin-top: 3%;
 
 }
 
@@ -18,12 +30,13 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 9%;
+    width: 50%;
 
 }
 
 .c-login form label {
 
-    font-size: 20px;
+    font-size: 18px;
 
 }
 
@@ -34,15 +47,35 @@
 
 }
 
-.c-login .submit {
+.c-login .passwordField {
 
-    width: 250px;
+    display: flex;
+    width: 100%;
+}
+
+.c-login .passwordField input {
+
+    width: 88%;
     border: none;
     outline: none;
-    margin: 30px 0px 0px 70px;
+    background-color: #c6c6c680;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px 20px;
+    height: 30px;
+    font-size: 15px;
+
+}
+
+.c-login .submit {
+
+    width: 100%;
+    border: none;
+    outline: none;
+    margin: 10px 0px 0px 0px;
     border-radius: 5px;
     padding: 10px 0;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(34, 177, 72);
     color: white;
     font-weight: bolder;
     cursor: pointer;
@@ -58,48 +91,26 @@
     outline: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    background-color: #c6c6c680;
+    padding-right: 6px;
 
 }
 
-.c-login img {
+.c-login .passwordField img {
 
     width: 20px;
     height: 20px;
     margin-top: 3px;
     padding-right: 10px;
+    background-color: #c6c6c60c;
 
 }
 
-.c-login .passwordField {
-
-    display: flex;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: rgb(240, 239, 239);
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 18px;
-}
-
-.c-login .passwordField input {
-
-    border: none;
-    outline: none;
-    background-color: rgb(240, 239, 239);
-    height: 30px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    font-size: 15px;
-    padding: 10px 10px;
-
-}
 
 .c-login .eye-button {
 
     border: none;
     outline: none;
-    margin-right: 0px;
 
 }
 
@@ -122,11 +133,53 @@
 
     border: none;
     outline: none;
-    background-color: rgb(240, 239, 239);
-    padding: 10px 10px;
+    background-color: #c6c6c680;
+    padding: 10px 20px;
     height: 30px;
     border-radius: 10px;
     margin-top: 5px;
     font-size: 15px;
+
+}
+
+.c-login .right {
+
+    width: 60%;
+
+
+}
+
+.c-login .right .login-pic {
+
+    height: 100%;
+    width: 51.25%;
+    position: fixed;
+}
+
+.c-login .right button {
+
+    position: absolute;
+    z-index: 2;
+    margin-left: 46%;
+    margin-top: 5px;
+    padding: 5px 10px 8px 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.489);
+}
+
+.c-login .right .toSign {
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: unset;
+
+
+}
+
+.c-login .right .toSign:visited {
+
+    text-decoration: none;
 
 }

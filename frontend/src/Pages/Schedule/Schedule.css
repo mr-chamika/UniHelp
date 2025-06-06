@@ -1,0 +1,197 @@
+.c-schedule {
+
+    width: 86.8%;
+    margin-left: 13%;
+    padding-top: 8%;
+    position: absolute;
+
+}
+
+.c-schedule .schedule-content {
+
+    display: flex;
+    gap: 10px;
+
+}
+
+.c-schedule .schedule-content .calendar {
+
+    width: 80%;
+
+}
+
+.c-schedule .schedule-content .side {
+
+    width: 18%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 2px 2px 15px 3px rgba(126, 122, 122, 0.21);
+    margin-left: 5px;
+    margin-right: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 78vh;
+    overflow-y: auto;
+}
+
+.c-schedule .schedule-content .side .top-buttons {
+
+    display: flex;
+    gap: 2px;
+
+}
+
+.c-schedule .schedule-content .side .add {
+
+    border: none;
+    background-color: rgba(0, 255, 132, 0.388);
+    padding: 5px 0px;
+    width: 110px;
+    font-style: initial;
+    font-size: 14px;
+    border-radius: 10px;
+    margin-top: 3px;
+    font-weight: bold;
+
+}
+
+.c-schedule .schedule-content .side .t {
+
+    border: none;
+    background-color: rgba(19, 84, 248, 0.388);
+    padding: 5px 0px;
+    width: 110px;
+    font-style: initial;
+    font-size: 14px;
+    border-radius: 10px;
+    margin-top: 3px;
+    font-weight: bold;
+
+}
+
+.c-schedule .schedule-content .side .add:hover {
+
+    background-color: rgb(4, 199, 62);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms;
+
+}
+
+.c-schedule .schedule-content .side .t:hover {
+
+    background-color: rgb(4, 0, 255);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms;
+
+}
+
+.c-schedule .schedule-content .side .events h1 {
+
+    font-size: 18px;
+    font-weight: 500;
+    margin: 15px 0px 0px 15px;
+    font-style: oblique;
+
+}
+
+.c-schedule .schedule-content .side .events .list h1 {
+
+    color: rgba(128, 128, 128, 0.514);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+
+
+}
+
+.in-c {
+
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+
+}
+
+
+.in-c .field {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.in-c .field input {
+
+    padding: 5px;
+    width: 100%;
+    color: black;
+    font-weight: 600;
+    font-family: "Montserrat", serif;
+}
+
+.in-c .buts {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+
+}
+
+.in-c .buts-1 {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+
+}
+
+.in-c .buts input {
+
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(72, 221, 72);
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+.in-c .buts button {
+
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(221, 72, 72);
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+.in-c .buts-1 button {
+
+    margin-top: 20px;
+    border: none;
+    padding: 10px 10px;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(221, 72, 72, 0.868);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 100px;
+
+}
