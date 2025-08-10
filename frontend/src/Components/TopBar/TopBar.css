@@ -1,0 +1,126 @@
+.c-topbar {
+
+    padding: 7px;
+    position: fixed;
+    z-index: 20;
+    width: 99%;
+}
+
+.c-topbar .c-topbar-in {
+
+    background-color: rgba(0, 183, 255, 0.029);
+    width: 100%;
+    display: flex;
+
+}
+
+.c-topbar .c-topbar-in .right-wrap {
+
+    background-color: rgba(0, 183, 255, 0.097);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 12px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.c-topbar .c-topbar-in .left {
+
+    background-color: rgba(0, 183, 255, 0.097);
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+
+.c-topbar .c-topbar-in .right {
+
+    display: flex;
+    align-items: center;
+    background-color: unset;
+
+}
+
+.c-topbar .c-topbar-in .right .user-info {
+    background-color: unset;
+}
+
+.c-topbar .c-topbar-in .right .user-info p {
+
+    margin-top: 5px;
+    background-color: unset;
+    font-style: oblique;
+
+}
+
+.c-topbar .c-topbar-in .right .user-info h3 {
+
+    background-color: unset;
+    text-transform: uppercase;
+}
+
+.c-topbar .c-topbar-in .logo {
+
+    width: 58px;
+    height: 65px;
+    background-color: unset;
+    padding: 10px 5px;
+
+}
+
+.c-topbar .c-topbar-in .notify {
+
+    width: 35px;
+    height: 30px;
+    background-color: unset;
+
+}
+
+.c-topbar .c-topbar-in .notify,
+.mode,
+.user-field:hover {
+
+    cursor: pointer;
+
+}
+
+.c-topbar .c-topbar-in .mode {
+
+    width: 35px;
+    height: 30px;
+    margin-left: 1%;
+    margin-right: 3%;
+    background-color: unset;
+    padding: 0 4px;
+
+}
+
+.c-topbar .c-topbar-in .user-field {
+
+    display: flex;
+    height: 50px;
+    margin-left: 1%;
+    min-width: 100px;
+    padding: 5px 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(66, 39, 90, 0.44);
+    border-radius: 20px;
+
+
+}
+
+
+.c-topbar .c-topbar-in .user {
+
+    width: 48px;
+    height: 46px;
+    border-radius: 100%;
+    margin-right: 2px;
+    background-color: unset;
+
+}

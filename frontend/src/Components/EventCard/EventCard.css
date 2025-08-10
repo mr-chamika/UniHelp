@@ -1,0 +1,52 @@
+.event-card {
+
+    background-color: rgba(255, 166, 0, 0.308);
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 13px;
+    align-items: center;
+
+}
+
+.event-card .content h2 {
+
+    font-size: 17px;
+    font-weight: 300;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    font-style: italic;
+    padding: 3px 2px;
+
+}
+
+.event-card .content p {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.event-card .buttons {
+
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 7px;
+
+}
+
+.event-card .buttons button {
+
+    border: none;
+    background-color: unset;
+
+}
+
+.event-card .buttons button:hover {
+
+    cursor: pointer;
+    box-shadow: -2px -1px 2px 1px rgba(128, 128, 128, 0.315), 2px -1px 2px 1px rgba(128, 128, 128, 0.315);
+    border-radius: 2px;
+}

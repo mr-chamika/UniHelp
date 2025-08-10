@@ -1,0 +1,94 @@
+.otpPopup-container {
+
+    position: fixed;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.792);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.otpPopup-container .popup {
+
+    background: white;
+    margin-top: 60px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.767);
+    position: relative;
+    min-width: 30%;
+    min-height: 33%;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.otpPopup-container .popup input {
+
+    background-color: rgba(220, 220, 220, 0.279);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    justify-self: center;
+    width: 85%;
+}
+
+.otpPopup-container .popup p {
+
+    width: 90%;
+    background-color: unset;
+    display: flex;
+    justify-self: left;
+    padding: 20px 0px 35px 0px;
+    margin-left: 5%;
+    transition: transform 0.6s ease;
+
+}
+
+.otpPopup-container .popup .buttons {
+
+    background-color: unset;
+    display: flex;
+    margin-top: 10%;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    padding: 10px 10px;
+}
+
+.otpPopup-container .popup button {
+
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: unset;
+    border: none;
+    outline: none;
+    width: 45%;
+
+}
+
+.otpPopup-container .popup button:hover {
+
+    cursor: pointer;
+
+}
+
+.otpPopup-container .popup .done {
+
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+
+}
+
+.otpPopup-container .popup .cancel {
+
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+
+}
