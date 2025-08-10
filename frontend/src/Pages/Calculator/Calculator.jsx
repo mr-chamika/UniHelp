@@ -338,7 +338,7 @@ const Calculator = () => {
 
                                 <div className="gpa">
 
-                                    <span>You GPA is : {gpa}</span>
+                                    <span>Your GPA is : {gpa}</span>
 
                                 </div>
 

@@ -55,7 +55,12 @@ const SideBar = () => {
 
                     >Calculator</div>
 
-                    <div className="button">Storage</div>
+                    <div
+
+                        className={`${location.pathname == '/home/storage' ? 'active' : 'button'}`}
+                        onClick={() => { navigate('/home/storage') }}
+
+                    >Storage</div>
                     <div className="button logout" onClick={() => { setIsLogout(true) }}>Logout</div>
 
 

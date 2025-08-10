@@ -35,7 +35,7 @@ const Home = () => {
                         <img src={pic} width='150px'></img>
                         <div className="gd">
 
-                            <h1>Good morning {user.username} !!!</h1>
+                            <h1>Good {hrs < 12 ? 'morning ' : (hrs > 12 && hrs < 18) ? 'evening ' : 'night '}{user.username} !!!</h1>
                             <p>{date.toLocaleDateString('en-US', { weekday: 'long' })}, {date.getDate()} {date.toLocaleDateString('en-Us', { month: 'long' })} {date.getFullYear()}</p>
 
                         </div>
@@ -48,7 +48,7 @@ const Home = () => {
                             <h1>{seconds >= 10 ? `${seconds}` : `0${seconds}`} </h1>
                             <h1>{hrs >= 12 && mins > 0 ? `PM` : `AM`}</h1>
                         </div>
-                        <h1>Work day</h1>
+                        <h1>{(date.getDay() == 0 || date.getDay() == 6) ? 'Holiday' : 'workday'}</h1>
                     </div>
 
                 </div>

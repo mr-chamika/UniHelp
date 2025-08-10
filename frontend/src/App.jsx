@@ -8,6 +8,7 @@ import Home from './Pages/Home/Home';
 import Schedule from './Pages/Schedule/Schedule';
 import TimeTable from './Pages/TimeTable/TimeTable';
 import Calculator from './Pages/Calculator/Calculator';
+import Storage from './Pages/Storage/Storage';
 
 const App = () => {
 
@@ -28,8 +29,7 @@ const App = () => {
             <Route path='schedule' element={<Schedule />} />
             <Route path='schedule/time-table' element={<TimeTable />} />
             <Route path='calculator' element={<Calculator />} />
-
-
+            <Route path='storage' element={<Storage />} />
 
           </Route>
 
