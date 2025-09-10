@@ -72,6 +72,12 @@
 
 }
 
+.c-topbar .c-topbar-in .logo:hover {
+
+    cursor: pointer;
+
+}
+
 .c-topbar .c-topbar-in .notify {
 
     width: 35px;

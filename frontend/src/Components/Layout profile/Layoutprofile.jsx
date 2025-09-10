@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom";
-import SideBar from "../SideBar/SideBar";
 import TopBar from "../TopBar/TopBar";
 
-const Layout = () => {
+const Layoutprofile = () => {
     return (
         <div className="c-layout">
             <TopBar />
-            <SideBar />
             <div className="content"><Outlet /></div>
         </div>
     );
 };
 
-export default Layout;
+export default Layoutprofile;

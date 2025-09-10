@@ -1,6 +1,7 @@
 import { React } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Components/Layout/Layout';
+import Layoutprofile from './Components/Layout profile/Layoutprofile';
 import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
@@ -9,6 +10,7 @@ import Schedule from './Pages/Schedule/Schedule';
 import TimeTable from './Pages/TimeTable/TimeTable';
 import Calculator from './Pages/Calculator/Calculator';
 import Storage from './Pages/Storage/Storage';
+import Profile from './Pages/Profile/Profile';
 
 const App = () => {
 
@@ -33,6 +35,12 @@ const App = () => {
 
           </Route>
 
+          <Route path='/' element={<Layoutprofile />}>
+
+            <Route path='profile' element={<Profile />} />
+
+
+          </Route>
           {/* <Route path='/home/dashboard' element={
             <div>
               <Layout />

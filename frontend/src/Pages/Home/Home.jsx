@@ -8,7 +8,6 @@ import './Home.css';
 const Home = () => {
 
     const { user } = useContext(UserContext);
-
     var date = new Date();
 
     const [seconds, setSeconds] = useState(new Date().getSeconds());
@@ -16,6 +15,7 @@ const Home = () => {
     const [hrs, setHrs] = useState(new Date().getHours())
     const [timetable, setTimetable] = useState([]);
     const [events, setEvents] = useState([]);
+    const [userData, setUserData] = useState(null);
 
 
     setInterval(() => {
@@ -31,7 +31,7 @@ const Home = () => {
 
         const today = new Date().getDay(); // 0=Sunday, 1=Monday, ...
         // Assuming your backend expects 1=Monday, 2=Tuesday, etc.
-        const activeDay = 3 // If Sunday, set to 7
+        const activeDay = today === 0 ? 7 : today; // If Sunday, set to 7
 
         fetch(`http://localhost:5000/event/get-timeslot/${user.userId}/${activeDay}`)
             .then(res => res.json())
@@ -47,6 +47,20 @@ const Home = () => {
             .catch(err => console.log('Error fetching events:', err));
     }, [user?.userId]);
 
+    useEffect(() => {
+
+        if (!user?.userId) return;
+
+        fetch(`http://localhost:5000/user/get/${user.userId}`)
+            .then(res => res.json())
+            .then((data) => {
+                setUserData(data.user);
+            })
+            .catch(err => console.log('Error from get user : ' + err))
+
+
+    }, [user?.userId])
+
     return (
         <div className="c-home">
 
@@ -56,7 +70,7 @@ const Home = () => {
 
                     <div className="greeting">
 
-                        <img src={pic} width='150px'></img>
+                        <img src={userData && userData.ProfilePic !== " " ? userData.ProfilePic : pic} width='150px'></img>
                         <div className="gd">
 
                             <h1>Good {hrs < 12 ? 'morning ' : (hrs > 12 && hrs < 18) ? 'evening ' : 'night '}{user.username} !!!</h1>
@@ -121,40 +135,40 @@ const Home = () => {
 
                     </div>
                     <div className="todo-list">
+                        {events.length > 0 &&
+                            <table>
+                                <thead>
 
-                        <table>
-                            <thead>
-
-                                <tr>
-                                    <th>Activity</th>
-                                    <th>Status</th>
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-                                {events.length === 0 && (
                                     <tr>
-                                        <td colSpan="2">No activities found</td>
+                                        <th>Activity</th>
+                                        <th>Status</th>
                                     </tr>
-                                )}
-                                {events.map(event => (
-                                    <tr key={event._id}>
-                                        <td>{event.title}</td>
-                                        <td className={`act ${event.status === 'pending'
-                                            ? (new Date(event.end) < new Date() ? 'missed' : 'pending')
-                                            : 'done'
-                                            }`}>
-                                            {event.status === 'pending'
-                                                ? (new Date(event.end) < new Date() ? 'Missed' : 'Pending')
-                                                : 'Done'}
-                                        </td>
-                                        {/* You can set status based on event dates if needed */}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
 
+                                </thead>
+
+                                <tbody>
+
+                                    {events.map(event => (
+                                        <tr key={event._id}>
+                                            <td>{event.title}</td>
+                                            <td className={`act ${event.status === 'pending'
+                                                ? (new Date(event.end) < new Date() ? 'missed' : 'pending')
+                                                : 'done'
+                                                }`}>
+                                                {event.status === 'pending'
+                                                    ? (new Date(event.end) < new Date() ? 'Missed' : 'Pending')
+                                                    : 'Done'}
+                                            </td>
+                                            {/* You can set status based on event dates if needed */}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>}
+                        {events.length === 0 && (
+
+                            <p>No activities found</p>
+
+                        )}
                     </div>
 
                 </div>
