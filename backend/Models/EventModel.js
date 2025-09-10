@@ -5,7 +5,8 @@ const schema = mongoose.Schema({
     userId: String,
     title: String,
     start: String,
-    end: String
+    end: String,
+    status: String//"pending","missed","completed"
 
 }, { timestamps: true })
 

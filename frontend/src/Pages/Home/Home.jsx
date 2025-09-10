@@ -15,6 +15,7 @@ const Home = () => {
     const [mins, setMins] = useState(new Date().getMinutes())
     const [hrs, setHrs] = useState(new Date().getHours())
     const [timetable, setTimetable] = useState([]);
+    const [events, setEvents] = useState([]);
 
 
     setInterval(() => {
@@ -36,6 +37,14 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setTimetable(data.slots))
             .catch(err => console.log('Error fetching timetable:', err));
+    }, [user?.userId]);
+
+    useEffect(() => {
+        if (!user?.userId) return;
+        fetch(`http://localhost:5000/event/get/${user.userId}`)
+            .then(res => res.json())
+            .then(data => setEvents(data.events))
+            .catch(err => console.log('Error fetching events:', err));
     }, [user?.userId]);
 
     return (
@@ -119,29 +128,18 @@ const Home = () => {
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>create portfolio</td>
-                                    <td className="act pending">Pending</td>
-                                </tr>
-                                <tr>
-                                    <td>trip to jaffna</td>
-                                    <td className="act done">Done</td>
-                                </tr>
-                                <tr>
-                                    <td>inclass assignment</td>
-                                    <td className="act missed">Missed</td>
-                                </tr>
-
-                                <tr>
-                                    <td>inclass assignment</td>
-                                    <td className="act missed">Missed</td>
-                                </tr>
-
-                                <tr>
-                                    <td>inclass assignment</td>
-                                    <td className="act missed">Missed</td>
-                                </tr>
-
+                                {events.length === 0 && (
+                                    <tr>
+                                        <td colSpan="2">No activities found</td>
+                                    </tr>
+                                )}
+                                {events.map(event => (
+                                    <tr key={event._id}>
+                                        <td>{event.title}</td>
+                                        <td className="act pending">Pending</td>
+                                        {/* You can set status based on event dates if needed */}
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
 
