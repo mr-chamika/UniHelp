@@ -65,6 +65,8 @@ const SignUp = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
+    const [uniEmailError, setUniEmailError] = useState(false);
+
 
     const validatePassword = (pwd) => {
         const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
@@ -79,6 +81,11 @@ const SignUp = () => {
     const validateEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return !regex.test(email);
+    };
+
+    const validateUniversityEmail = (email) => {
+        const regex = /^[^\s@]+@((stu\.)?ucsc\.cmb\.ac\.lk|student\.university\.edu)$/i;
+        return regex.test(email);
     };
 
     const validatePhone = (phone) => {
@@ -126,7 +133,8 @@ const SignUp = () => {
 
         setNameError(false);
         setPhoneError(false);
-        setEmailFormatError(false);
+        const isEmailInvalid = validateEmail(email); // true if invalid
+        setEmailFormatError(isEmailInvalid);
         setUniError(false);
         setFacultyError(false);
         setPasswordError(false);
@@ -136,7 +144,6 @@ const SignUp = () => {
 
         const isNameInvalid = validateName(name);
         const isPhoneInvalid = validatePhone(phone);
-        const isEmailInvalid = validateEmail(email);
         const isPasswordInvalid = validatePassword(tpassword);
         const isUsernameInvalid = validateUsername(username);
         const isUniEmpty = uni === '';
@@ -145,10 +152,19 @@ const SignUp = () => {
         setNameError(isNameInvalid);
         setPhoneError(isPhoneInvalid);
         setEmailFormatError(isEmailInvalid);
+        if (isEmailInvalid) { setUniEmailError(false) }
         setUniError(isUniEmpty);
         setFacultyError(isFacultyEmpty);
         setPasswordError(isPasswordInvalid);
         setUsernameFormatError(isUsernameInvalid);
+
+        if (!validateUniversityEmail(email) && !isEmailInvalid) {
+            setUniEmailError(true);
+            return;
+        } else {
+            setUniEmailError(false);
+        }
+
 
         if (tpassword !== cpassword) {
             setIsPasswordMatch(false);
@@ -202,7 +218,7 @@ const SignUp = () => {
                             password: hashed(salted(tpassword))
                         });
 
-                        emailjs.send('service_k761r0g', 'template_ygqoiff', emailTemplate, 'tzsqjrLjyvNx4hd00')
+                        emailjs.send('service_k761r0g', 'template_ygqoiff', emailTemplate, 'Yec_iAk1ts2gSV3gU')
 
                         setShowPopup(true);
 
@@ -252,7 +268,7 @@ const SignUp = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     alert('Account created successfully.');
-                    navigate(`/home/${data.newUser._id}`);
+                    navigate(`/login`);
                 })
                 .catch((err) => {
                     console.log('Error from SignUp ', err);
@@ -307,6 +323,7 @@ const SignUp = () => {
                         <input placeholder="University Student Email" type="email" onChange={(e) => setEmail(e.target.value)}></input>
                         {emailFormatError && <span className="error">* Please enter a valid email address *</span>}
                         {emailExist && <span>* This email already exists. Try another one *</span>}
+                        {uniEmailError && <span className="error">* Please enter a valid university email address *</span>}
 
                         <input placeholder="Mobile Number" type="tel" onChange={(e) => setPhone(e.target.value)}></input>
                         {phoneError && <span className="error">* Please enter a valid 10-digit phone number *</span>}

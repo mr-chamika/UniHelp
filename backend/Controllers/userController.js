@@ -1,6 +1,5 @@
 import User from "../Models/UserModel.js";
 import jwt from 'jsonwebtoken'
-import mongoose from 'mongoose'
 
 export const createUser = async (req, res) => {
 
@@ -9,6 +8,7 @@ export const createUser = async (req, res) => {
     const newUser = await new User({
 
         Name: name,
+        ProfilePic: " ",
         Username: username,
         University: uni,
         Facualty: facualty,
@@ -104,5 +104,16 @@ export const updatePassword = async (req, res) => {
     const done = await User.findByIdAndUpdate(record[0]._id, { $set: { Password: newp } });
 
     if (done) { res.json({ message: 'Password updated successfully' }) } else { res.json({ message: 'Error while updating password' }) }
+
+}
+export const updateUser = async (req, res) => {
+
+    const { email, profilePic } = req.body;
+
+    const record = await User.find({ Email: email });
+
+    const done = await User.findByIdAndUpdate(record[0]._id, { $set: { ProfilePic: profilePic } }, { new: true });
+
+    if (done) { res.json({ user: done }) }
 
 }

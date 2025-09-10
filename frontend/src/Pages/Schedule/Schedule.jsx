@@ -34,6 +34,11 @@ const Schedule = () => {
     const [toEditTitle, setToEditTitle] = useState('')
     const [toEditStart, setToEditStart] = useState('')
     const [toEditEnd, setToEditEnd] = useState('')
+    const [done, setDone] = useState(false);
+
+    const onDoneChange = (checked) => {
+        setDone(checked);
+    };
 
     //get user
     useEffect(() => {
@@ -68,7 +73,7 @@ const Schedule = () => {
 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: user.userId, title, start, end })
+                body: JSON.stringify({ userId: user.userId, title, start, end, status: "pending" })
 
             })
                 .then((res) => res.json())
@@ -147,7 +152,8 @@ const Schedule = () => {
 
         if (toEditTitle.trim().length == 0 || toEditStart.length == 0 || toEditEnd.length == 0) {
 
-            console.log('All fields must be filled')
+            console.log('All fields must be filled');
+            return;
 
         } else {
 
@@ -156,7 +162,7 @@ const Schedule = () => {
 
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title: toEditTitle, start: toEditStart, end: toEditEnd })
+                body: JSON.stringify({ title: toEditTitle, start: toEditStart, end: toEditEnd, done: done })
 
             })
                 .then((res) => res.json())
@@ -214,23 +220,26 @@ const Schedule = () => {
                                     {events.length == 0 && <h1>No events found</h1>}
 
                                     {
-                                        events.map((event) => {
+                                        events
+                                            .filter(event => new Date(event.end) > new Date())
 
-                                            return (
+                                            .map((event) => {
 
-                                                <EventCard
-                                                    key={event._id}
-                                                    title={event.title}
-                                                    start={event.start}
-                                                    end={event.end}
-                                                    dlt={() => deleteEvent(event._id)}
-                                                    edit={() => edit(event._id)}
-                                                    view={() => view(event._id)}
-                                                />
+                                                return (
 
-                                            )
+                                                    <EventCard
+                                                        key={event._id}
+                                                        title={event.title}
+                                                        start={event.start}
+                                                        end={event.end}
+                                                        dlt={() => deleteEvent(event._id)}
+                                                        edit={() => edit(event._id)}
+                                                        view={() => view(event._id)}
+                                                    />
 
-                                        })
+                                                )
+
+                                            })
 
                                     }
 
@@ -253,12 +262,12 @@ const Schedule = () => {
                         </div>
                         <div className='field'>
                             <label>Enter start date</label>
-                            <input value={start} type='datetime-local' onChange={e => setStart(e.target.value)} min={new Date().toISOString().split("T")[0]} />
+                            <input value={start} type='datetime-local' onChange={e => setStart(e.target.value)} min={new Date().toISOString().slice(0, 16)} />
 
                         </div>
                         <div className='field'>
                             <label>Enter end date</label>
-                            <input value={end} type='datetime-local' onChange={e => setEnd(e.target.value)} min={new Date().toISOString().split("T")[0]} />
+                            <input value={end} type='datetime-local' onChange={e => setEnd(e.target.value)} min={start && new Date(start).toISOString().slice(0, 16)} disabled={!start} />
                         </div>
                         <div className='buts'>
                             <input type='submit'></input>
@@ -287,9 +296,17 @@ const Schedule = () => {
                             <label>Enter end date</label>
                             <input value={toEditEnd} type='datetime-local' onChange={e => setToEditEnd(e.target.value)} min={new Date().toISOString().split("T")[0]} />
                         </div>
+                        <label>
+                            Done
+                            <input
+                                type="checkbox"
+                                checked={done}
+                                onChange={e => onDoneChange(e.target.checked)}
+                            />
+                        </label>
                         <div className='buts'>
                             <input type='submit'></input>
-                            <button onClick={() => { setShowE(false); setToEditTitle(toEdit.title); setToEditStart(toEdit.start); setToEditEnd(toEdit.end) }}>Cancel</button>
+                            <button onClick={() => { setDone(false); setShowE(false); setToEditTitle(toEdit.title); setToEditStart(toEdit.start); setToEditEnd(toEdit.end) }}>Cancel</button>
                         </div>
 
                     </form>

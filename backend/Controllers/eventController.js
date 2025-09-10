@@ -4,7 +4,7 @@ import Row from '../Models/Row.js'
 
 export const createEvent = async (req, res) => {
 
-    const { userId, title, start, end } = req.body;
+    const { userId, title, start, end, status } = req.body;
 
     const user = await User.findByIdAndUpdate({ _id: userId }, { $inc: { Events: 1 } });
 
@@ -12,7 +12,8 @@ export const createEvent = async (req, res) => {
         userId: userId,
         title: title,
         start: start,
-        end: end
+        end: end,
+        status: status
 
     })
 
@@ -54,9 +55,17 @@ export const editEvent = async (req, res) => {
 
     const id = req.params.id.toString();
 
-    const { title, start, end } = req.body;
+    const { title, start, end, done } = req.body;
 
-    await Event.findByIdAndUpdate({ _id: id }, { $set: { title: title, start: start, end: end } })
+    if (done) {
+
+        await Event.findByIdAndUpdate({ _id: id }, { $set: { title: title, start: start, end: end, status: "done" } })
+
+    } else {
+
+        await Event.findByIdAndUpdate({ _id: id }, { $set: { title: title, start: start, end: end } })
+
+    }
 
     res.json({ message: 'event updated successfully' });
 
