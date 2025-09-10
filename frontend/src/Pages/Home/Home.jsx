@@ -31,7 +31,7 @@ const Home = () => {
 
         const today = new Date().getDay(); // 0=Sunday, 1=Monday, ...
         // Assuming your backend expects 1=Monday, 2=Tuesday, etc.
-        const activeDay = today === 0 ? 7 : today; // If Sunday, set to 7
+        const activeDay = 3 // If Sunday, set to 7
 
         fetch(`http://localhost:5000/event/get-timeslot/${user.userId}/${activeDay}`)
             .then(res => res.json())
@@ -78,9 +78,9 @@ const Home = () => {
                 </div>
                 <div className="bottom">
 
-                    {timetable.length > 0 &&
-                        <div className="timetable">
+                    <div className="timetable">
 
+                        {timetable.length > 0 &&
                             <table>
 
                                 <thead>
@@ -112,9 +112,14 @@ const Home = () => {
                                 </tbody>
 
                             </table>
+                        }
+                        {timetable.length == 0 &&
 
+                            <p>No Timetable for today</p>
 
-                        </div>}
+                        }
+
+                    </div>
                     <div className="todo-list">
 
                         <table>
@@ -136,7 +141,14 @@ const Home = () => {
                                 {events.map(event => (
                                     <tr key={event._id}>
                                         <td>{event.title}</td>
-                                        <td className="act pending">Pending</td>
+                                        <td className={`act ${event.status === 'pending'
+                                            ? (new Date(event.end) < new Date() ? 'missed' : 'pending')
+                                            : 'done'
+                                            }`}>
+                                            {event.status === 'pending'
+                                                ? (new Date(event.end) < new Date() ? 'Missed' : 'Pending')
+                                                : 'Done'}
+                                        </td>
                                         {/* You can set status based on event dates if needed */}
                                     </tr>
                                 ))}
