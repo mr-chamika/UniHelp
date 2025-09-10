@@ -120,13 +120,14 @@ img {
 
     padding: 10px;
     border-bottom: solid rgba(128, 128, 128, 0.158) 1px;
-
+    text-align: center;
 }
 
 .c-home .home-content .bottom table tbody .int {
 
     text-align: center;
-    letter-spacing: 15px;
+    letter-spacing: 2em;
+    opacity: 0.4;
 
 }
 

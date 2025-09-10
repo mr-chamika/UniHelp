@@ -39,8 +39,8 @@ const TopBar = ({ }) => {
                 <div className='right-wrap'>
                     <div className='right'>
 
-                        <img className='notify' src={Notification} onClick={notification}></img>
-                        <img className='mode' src={Mode} onClick={darkOrLightMode}></img>
+                        {/* <img className='notify' src={Notification} onClick={notification}></img>
+                        <img className='mode' src={Mode} onClick={darkOrLightMode}></img> */}
 
                         <div className='user-field'>
 

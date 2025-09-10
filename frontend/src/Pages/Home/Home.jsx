@@ -14,6 +14,8 @@ const Home = () => {
     const [seconds, setSeconds] = useState(new Date().getSeconds());
     const [mins, setMins] = useState(new Date().getMinutes())
     const [hrs, setHrs] = useState(new Date().getHours())
+    const [timetable, setTimetable] = useState([]);
+
 
     setInterval(() => {
 
@@ -22,6 +24,19 @@ const Home = () => {
         setHrs(new Date().getHours())
 
     }, 1000)
+
+    useEffect(() => {
+        if (!user?.userId) return;
+
+        const today = new Date().getDay(); // 0=Sunday, 1=Monday, ...
+        // Assuming your backend expects 1=Monday, 2=Tuesday, etc.
+        const activeDay = today === 0 ? 7 : today; // If Sunday, set to 7
+
+        fetch(`http://localhost:5000/event/get-timeslot/${user.userId}/${activeDay}`)
+            .then(res => res.json())
+            .then(data => setTimetable(data.slots))
+            .catch(err => console.log('Error fetching timetable:', err));
+    }, [user?.userId]);
 
     return (
         <div className="c-home">
@@ -54,63 +69,43 @@ const Home = () => {
                 </div>
                 <div className="bottom">
 
-                    <div className="timetable">
+                    {timetable.length > 0 &&
+                        <div className="timetable">
 
-                        <table>
+                            <table>
 
-                            <thead>
+                                <thead>
 
-                                <tr>
+                                    <tr>
 
-                                    <th>Time</th>
-                                    <th>Subject</th>
+                                        <th>Time</th>
+                                        <th>Subject</th>
 
-                                </tr>
+                                    </tr>
 
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
 
-                                <tr>
+                                    {timetable.map((row, idx) => (
+                                        <>
+                                            <tr key={idx}>
+                                                <td>{row.start} - {row.end}</td>
+                                                <td>{row.subject}</td>
+                                            </tr>
+                                            {/* Insert interval after the second slot */}
+                                            {idx === 1 && (
+                                                <tr>
+                                                    <td className="int" colSpan="2">INTERVAL</td>
+                                                </tr>
+                                            )}
+                                        </>
+                                    ))}
+                                </tbody>
 
-                                    <td>8.00 - 10.00</td>
-                                    <td>Discrete Maths</td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>10.00 - 12.00</td>
-                                    <td>Mathematical Methods</td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td className="int" colSpan='2'>INTERVAL</td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td>13.00 - 15.00</td>
-                                    <td>Computer Networks</td>
-
-                                </tr>
-                                <tr>
-
-                                    <td>15.00 - 17.00</td>
-                                    <td>Enhancment</td>
-
-                                </tr>
+                            </table>
 
 
-                            </tbody>
-
-                        </table>
-
-
-                    </div>
+                        </div>}
                     <div className="todo-list">
 
                         <table>
