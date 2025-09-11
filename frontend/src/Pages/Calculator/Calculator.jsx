@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Calculator.css';
-import { evaluate, isNumber } from 'mathjs';
+import { evaluate } from 'mathjs';
 
 const Calculator = () => {
 
@@ -11,6 +11,11 @@ const Calculator = () => {
         { id: Math.random(), module: '', credit: '', grade: '', result: '' }
 
     ]);
+    const [showReport, setShowReport] = useState(false);
+
+    const submit = () => {
+        setShowReport(true);
+    };
 
     const handleAddBlock = () => {
         setFormBlocks([...formBlocks, { id: Math.random(), module: '', credit: '', grade: '', result: '' }]);
@@ -172,12 +177,6 @@ const Calculator = () => {
         }
     };
 
-    const submit = () => {
-
-        console.log(formBlocks)
-
-    }
-
     const getGpa = (formBlocks) => {
 
         var Credits = 0;
@@ -328,10 +327,10 @@ const Calculator = () => {
                                     <button className='add' onClick={handleAddBlock}>+</button>
 
                                 </div>
-                                <div className="footer">
+                                {gpa != 0 && <div className="footer">
 
                                     <button className='submit' onClick={submit}>submit</button>
-                                </div>
+                                </div>}
                             </div>
 
                             {gpa != 0 &&
@@ -343,6 +342,36 @@ const Calculator = () => {
                                 </div>
 
                             }
+
+                            {showReport && (
+                                <div className="gpa-report-popup">
+                                    <div className="gpa-report-content">
+                                        <h2>GPA Report</h2>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Module</th>
+                                                    <th>Credit</th>
+                                                    <th>Grade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {formBlocks.map((block, idx) => (
+                                                    <tr key={idx}>
+                                                        <td>{block.module}</td>
+                                                        <td>{block.credit}</td>
+                                                        <td>{block.grade}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                        <div className="final-gpa">
+                                            <strong>Final GPA: {gpa}</strong>
+                                        </div>
+                                        <button onClick={() => setShowReport(false)}>Close</button>
+                                    </div>
+                                </div>
+                            )}
 
                         </div>
 
