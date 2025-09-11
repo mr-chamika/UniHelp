@@ -319,3 +319,61 @@
     color: white;
 
 }
+
+.gpa-report-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.744);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.gpa-report-content {
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    min-width: 320px;
+    max-width: 90vw;
+}
+
+.gpa-report-content h2 {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.gpa-report-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.gpa-report-content th,
+.gpa-report-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.final-gpa {
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.gpa-report-content button {
+    display: block;
+    margin: 0 auto;
+    padding: 8px 24px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
